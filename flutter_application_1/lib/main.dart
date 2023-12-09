@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/gradient_container.dart';
+import 'package:flutter_application_1/Roll_DIce_Demo/gradient_container.dart';
+
+import 'Quzz_Demo/quzz_demo_main.dart';
 
 void main() {
   runApp(const MyApp());
@@ -13,7 +15,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(title: const Text("My App")),
-        body: const GradientContainer(),
+        body: const Quiz(), //add this when run quzz demo
+        // body: const GradientContainer(), //add this when run roll dice demo
       ),
     );
   }

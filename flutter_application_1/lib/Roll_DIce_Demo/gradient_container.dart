@@ -33,7 +33,12 @@ class _GradientContainerState extends State<GradientContainer> {
           SizedBox(
               width: 200,
               child: Image.asset("assets/images/dice-$diceCounter.png")),
-          TextButton(onPressed: btnandler, child: const Text("TextBtn"))
+          TextButton(
+              onPressed: btnandler,
+              child: const Text(
+                "Roll Me",
+                style: TextStyle(color: Colors.white),
+              ))
         ],
       )),
     );
