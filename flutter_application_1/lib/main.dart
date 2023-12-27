@@ -14,7 +14,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        appBar: AppBar(title: const Text("My App")),
+        appBar: AppBar(
+          title: const Text("My App"),
+          backgroundColor: Color.fromARGB(255, 71, 5, 124),
+        ),
         body: const Quiz(), //add this when run quzz demo
         // body: const GradientContainer(), //add this when run roll dice demo
       ),
