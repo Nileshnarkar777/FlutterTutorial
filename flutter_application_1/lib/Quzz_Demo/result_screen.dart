@@ -3,9 +3,11 @@ import 'package:flutter_application_1/Quzz_Demo/Data/questions.dart';
 import 'package:flutter_application_1/Quzz_Demo/questions_summary.dart';
 
 class ResultScreen extends StatelessWidget {
-  const ResultScreen({super.key, required this.choosenAnswers});
+  const ResultScreen(
+      {super.key, required this.choosenAnswers, required this.restartquzz});
 
   final List<String> choosenAnswers;
+  final Function restartquzz;
 
   List<Map<String, Object>> getSummaryOfQuestions() {
     List<Map<String, Object>> summary = [];
@@ -49,7 +51,9 @@ class ResultScreen extends StatelessWidget {
               height: 30,
             ),
             TextButton(
-              onPressed: () {},
+              onPressed: () {
+                restartquzz();
+              },
               style: TextButton.styleFrom(foregroundColor: Colors.white),
               child: const Text("Restart Quzz"),
             )
