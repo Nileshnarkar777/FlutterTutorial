@@ -12,11 +12,6 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  _addnewExpenses(BuildContext context) {
-    showModalBottomSheet(
-        context: context, builder: ((context) => const NewExpense()));
-  }
-
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
@@ -28,7 +23,7 @@ class MyApp extends StatelessWidget {
         //   // actions: [IconButton(onPressed: () {}, icon: const Icon(Icons.add))],
         // ),
 
-        body: const Expenses(), //add this when run expenses demo
+        body: Expenses(), //add this when run expenses demo
         // body: const Quiz(), //add this when run quzz demo
         // body: const GradientContainer(), //add this when run roll dice demo
       ),

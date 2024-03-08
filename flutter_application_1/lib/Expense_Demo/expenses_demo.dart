@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/Expense_Demo/Chart/chart.dart';
 import 'package:flutter_application_1/Expense_Demo/Model/Expenses_Model.dart';
 import 'package:flutter_application_1/Expense_Demo/expense_list.dart';
 import 'package:flutter_application_1/Expense_Demo/new_expense.dart';
@@ -26,11 +27,40 @@ class _ExpensesState extends State<Expenses> {
 
   _addnewExpenses() {
     showModalBottomSheet(
-        context: context, builder: ((context) => const NewExpense()));
+        context: context,
+        builder: ((context) => NewExpense(addExpense: _saveNewExpense)));
+  }
+
+  _saveNewExpense(ExpensesModel expense) {
+    setState(() {
+      _registeredExpenses.add(expense);
+    });
+  }
+
+  _removeExpense(ExpensesModel expense) {
+    int index = _registeredExpenses.indexOf(expense);
+    setState(() {
+      _registeredExpenses.remove(expense);
+    });
+
+    ScaffoldMessenger.of(context).clearSnackBars();
+
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+      content: const Text("Expense Deleted"),
+      duration: const Duration(milliseconds: 3),
+      action: SnackBarAction(
+          label: "Undo",
+          onPressed: () {
+            _registeredExpenses.insert(index, expense);
+          }),
+    ));
   }
 
   @override
   Widget build(BuildContext context) {
+    Widget mainWidget = _registeredExpenses.isEmpty
+        ? const Center(child: Text("No expense added please add one."))
+        : ExpenseList(_registeredExpenses, _removeExpense);
     return Scaffold(
       appBar: AppBar(
         title: const Text("Expense List"),
@@ -40,8 +70,8 @@ class _ExpensesState extends State<Expenses> {
       ),
       body: Column(
         children: [
-          const Text("Chart"),
-          Expanded(child: ExpenseList(_registeredExpenses)),
+          Chart(expenses: _registeredExpenses),
+          Expanded(child: mainWidget),
         ],
       ),
     );
